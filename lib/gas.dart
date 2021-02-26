@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kawalcovid/get_data.dart';
-import 'package:kawalcovid/http_service.dart';
-import 'package:kawalcovid/nav-drawer.dart';
+import 'package:kawalcovid/api/get_data.dart';
+import 'package:kawalcovid/api/http_service.dart';
+import 'package:kawalcovid/header/nav-drawer.dart';
 
 class GasPage extends StatefulWidget {
   
@@ -14,7 +14,8 @@ class GasPage extends StatefulWidget {
 class _GasPage extends State<GasPage> {
   @override
   Widget build(BuildContext context) {
-    // final DataIndo _getIndo = DataIndo();
+
+     final DataIndo _getIndo = DataIndo();
      final DataGlobal _getGlobal = DataGlobal();
 
     return SafeArea(
@@ -137,67 +138,70 @@ class _GasPage extends State<GasPage> {
                   ),
                 ),
               ),
-          //      Padding(
-          //   padding: EdgeInsets.all(12.0),
-           
-          // ),
-             
-          //  Center(
-          //       child: Text(
-          //     'Data Kasus CoronaVirus Berdasarkan Provinsi di indonesia',
-          //     style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-          //   )),
-          //    Padding(
-          //   padding: EdgeInsets.all(6.0),
+            
           
-          // ),
-  
-          //             FutureBuilder(
-          //             future: _getIndo.getDataIndo(),
-          //             builder: (BuildContext context,
-          //                 AsyncSnapshot<List<CovidGlobal>> snapshot) {
-          //               if (snapshot.hasData) {
-          //                 List<CovidGlobal> dataIndo = snapshot.data;
-          //                 return SingleChildScrollView(
-          //                   scrollDirection: Axis.horizontal,
-          //                   child: DataTable(
-          //                     columns: [
-          //                       DataColumn(label: Text('Provinsi')),
-          //                       DataColumn(label: Text('Positif')),
-          //                       DataColumn(label: Text('Sembuh')),
-          //                       DataColumn(label: Text('Meninggal')),
-          //                     ],
-          //                     rows: dataIndo
-          //                         .map((CovidGlobal dataIndo) =>
-          //                             DataRow(cells: [
-          //                               DataCell(Text(
-          //                                   dataIndo.provinsi)),
-          //                               DataCell(Text(
-          //                                   dataIndo.kasus_posi.toString())),
-          //                               DataCell(Text(
-          //                                   dataIndo.kasus_sem.toString())),
-          //                               DataCell(Text(
-          //                                   dataIndo.kasus_meni.toString())),
-          //                             ]))
-          //                         .toList(),
-          //                   ),
-          //                 );
-          //               } else {
-          //                 return Center(
-          //                   child: CircularProgressIndicator(),
-          //                 );
-          //               }
-          //             },
-          //           ),
-
-          //                Padding(
-          //   padding: EdgeInsets.all(12.0),
+                         Padding(
+            padding: EdgeInsets.all(14.0),
            
-          // ),
+          ),
              
            Center(
                 child: Text(
-              'Data Kasus CoronaVirus Berdasarkan Provinsi di Dunia',
+              'Data Kasus CoronaVirus Berdasarkan Provinsi di Indonesia',
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+            )),
+             Padding(
+            padding: EdgeInsets.all(8.0),
+          
+          ),
+
+          FutureBuilder(
+            future: _getIndo.getDataIndo(),
+            builder: (BuildContext context, AsyncSnapshot<List<CovidProvinsi>> snapshot) {
+              if (snapshot.hasData) {
+                List<CovidProvinsi> dataIndo = snapshot.data;
+                return SingleChildScrollView(
+                  child: DataTable(
+                  columns: [
+                    DataColumn(
+                      label: Text('Provinsi')
+                    ),
+                    DataColumn(
+                      label: Text('Positif')
+                    ),
+                    DataColumn(
+                      label: Text('Sembuh')
+                    ),
+                    DataColumn(
+                      label: Text('Meninggal')
+                    ),
+                  ], rows:  dataIndo
+                      .map(
+                        (CovidProvinsi dataIndo) => DataRow(cells:[
+                          DataCell(Text(dataIndo.provinsi)),
+                          DataCell(Text(dataIndo.kasus_posi.toString())),
+                          DataCell(Text(dataIndo.kasus_sem.toString())),
+                          DataCell(Text(dataIndo.kasus_meni.toString())),
+                        ])).toList(),
+                  ),
+                );
+                
+              } else {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            },
+          ),
+
+                         Padding(
+            padding: EdgeInsets.all(16.0),
+           
+          ),
+             
+           Center(
+                child: Text(
+              'Data Kasus CoronaVirus di Dunia',
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
             )),
              Padding(
@@ -212,6 +216,7 @@ class _GasPage extends State<GasPage> {
                           List<CovidGlobal> dataGlobal = snapshot.data;
                           return SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
+                            
                             child: DataTable(
                               columns: [
                                 DataColumn(label: Text('Negara')),

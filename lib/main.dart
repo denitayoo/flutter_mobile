@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kawalcovid/gas.dart';
-import 'package:kawalcovid/launcher.dart';
+// import 'package:kawalcovid/launcher.dart';
 
 void main() {
   runApp(MyApp());

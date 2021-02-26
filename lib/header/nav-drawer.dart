@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kawalcovid/hotline.dart';
-import 'package:kawalcovid/kontak.dart';
+import 'package:kawalcovid/header/hotline.dart';
+import 'package:kawalcovid/header/kontak.dart';
 
 class DrawerWidget extends StatelessWidget {
   @override

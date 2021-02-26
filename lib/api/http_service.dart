@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:kawalcovid/get_data.dart';
+import 'package:kawalcovid/api/get_data.dart';
 import 'package:http/http.dart';
 
 class GetDataIndonesia {
